@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<robot name="four_wheeled_vehicle">
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="2000"/>
+      <inertia ixx="1200" ixy="0.0" ixz="0.0" iyy="2500" iyz="0.0" izz="3000"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://four_wheeled_vehicle/models/four_wheeled_vehicle/meshes/car.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.12" rpy="0 0 0"/>
+      <geometry>
+        <box size="5.0 1.5 0.47"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- FRONT LEFT STEERING LINK -->
+  <link name="front_left_steering_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.012" ixy="0.0" ixz="0.0" iyy="0.025" iyz="0.0" izz="0.012"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="front_left_steering_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_left_steering_link"/>
+    <origin xyz="1.445 0.833 -0.024" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.6" upper="0.6" effort="1000000" velocity="10000"/>
+  </joint>
+
+  <!-- FRONT LEFT WHEEL LINK -->
+  <link name="front_left_wheel_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="40"/>
+      <inertia ixx="1.4" ixy="0.0" ixz="0.0" iyy="2.5" iyz="0.0" izz="1.4"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://four_wheeled_vehicle/models/four_wheeled_vehicle/meshes/wheel_l.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.35" length="0.35"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="front_left_wheel_joint" type="revolute">
+    <parent link="front_left_steering_link"/>
+    <child link="front_left_wheel_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1e16" upper="1e16" effort="0" velocity="0"/>
+  </joint>
+
+  <!-- FRONT RIGHT STEERING LINK -->
+  <link name="front_right_steering_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.012" ixy="0.0" ixz="0.0" iyy="0.025" iyz="0.0" izz="0.012"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="front_right_steering_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_right_steering_link"/>
+    <origin xyz="1.445 -0.833 -0.024" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.6" upper="0.6" effort="1000000" velocity="10000"/>
+  </joint>
+
+  <!-- FRONT RIGHT WHEEL LINK -->
+  <link name="front_right_wheel_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="40"/>
+      <inertia ixx="1.4" ixy="0.0" ixz="0.0" iyy="2.5" iyz="0.0" izz="1.4"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://four_wheeled_vehicle/models/four_wheeled_vehicle/meshes/wheel_r.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.35" length="0.35"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="front_right_wheel_joint" type="revolute">
+    <parent link="front_right_steering_link"/>
+    <child link="front_right_wheel_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1e16" upper="1e16" effort="0" velocity="0"/>
+  </joint>
+
+  <!-- REAR LEFT WHEEL LINK -->
+  <link name="rear_left_wheel_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="40"/>
+      <inertia ixx="1.4" ixy="0.0" ixz="0.0" iyy="2.5" iyz="0.0" izz="1.4"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://four_wheeled_vehicle/models/four_wheeled_vehicle/meshes/wheel_l.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.35" length="0.35"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="rear_left_wheel_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="rear_left_wheel_link"/>
+    <origin xyz="-1.545 0.833 -0.024" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1e16" upper="1e16" effort="5000" velocity="10000"/>
+  </joint>
+
+  <!-- REAR RIGHT WHEEL LINK -->
+  <link name="rear_right_wheel_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="40"/>
+      <inertia ixx="1.4" ixy="0.0" ixz="0.0" iyy="2.5" iyz="0.0" izz="1.4"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://four_wheeled_vehicle/models/four_wheeled_vehicle/meshes/wheel_r.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.35" length="0.35"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="rear_right_wheel_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="rear_right_wheel_link"/>
+    <origin xyz="-1.545 -0.833 -0.024" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1e16" upper="1e16" effort="5000" velocity="10000"/>
+  </joint>
+
+  <!-- CAMERA LINK -->
+  <link name="kinect_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://four_wheeled_vehicle/models/four_wheeled_vehicle/meshes/kinect.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="kinect_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="kinect_link"/>
+    <origin xyz="0.15 0 1.0" rpy="0 0 0"/>
+  </joint>
+
+</robot>
